@@ -6,12 +6,14 @@ for (var i = 0; i < btnCount; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function () {
     var x = this.innerHTML;
     makeSound(x);
+    buttonAnimation(x);
   });
 }
 
 //detecting keyboardpress
 document.addEventListener("keypress", function (event) {
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
 
@@ -51,4 +53,14 @@ function makeSound(key) {
     default:
       console.log(key);
   }
+}
+
+
+function buttonAnimation(currentKey){
+  var activeButton=document.querySelector("."+currentKey);
+  activeButton.classList.add("pressed");
+
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  },100);
 }
